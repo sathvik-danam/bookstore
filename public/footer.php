@@ -1,0 +1,1 @@
+<?php echo " &copy; bookshop 2023"?>
