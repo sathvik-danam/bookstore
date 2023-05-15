@@ -29,7 +29,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 <html>
 <head>
 <title>Danam</title>
-<link rel="stylesheet" href="basket.css" />
+<link rel="stylesheet" href="bookshop.css" />
 </head>
 <body>
 
