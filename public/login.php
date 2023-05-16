@@ -55,29 +55,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="mycss.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="bookshop.css">
+    <title>Login Form</title>
 </head>
 
 <body>
-    <div style="text-align: -webkit-center;">
-        <div class="login-form">
-            <h2>LOGIN PAGE</h2>
-            <form method="POST">
-                <!-- need to add action command, but remonved it temporarily -->
-                <div class="input-field">
+    <div class="login-form">
+        <h2>LOGIN PAGE</h2>
+        <form method="POST">
+            <div class="input-field">
+                <input type="text" placeholder="Username" name="Username">
+            </div>
+            <div class="input-field">
+                <input type="password" placeholder="Password" name="Password">
+            </div>
 
-                    <input type="text" placeholder="Username" name="Username">
-                </div>
-                <div class="input-field">
-
-                    <input type="password" placeholder="Password" name="Password">
-                </div>
-
-                <button type="submit" name="Submit">Sign In</button>
-                <a href="register.php">Sign up</a>
-            </form>
-        </div>
+            <button type="submit" name="Submit">Sign In</button>
+            <a href="register.php">Sign up</a>
+        </form>
     </div>
 </body>
 

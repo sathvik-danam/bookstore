@@ -27,7 +27,7 @@ $smt->execute();
 
 
 
-		<h1>YOUR SELECTED Categories</h1>
+		<h1>YOU SELECTED Categories</h1>
 		<?php
 
     if(isset($_GET['cid']))
@@ -38,6 +38,7 @@ $smt->execute();
 			$flag++;
 
 			echo '<article class="product">
+			<div class="product-container">
 			<!-- <img src="product.png" alt="product name"> -->
 			<h1>'.$flag.'</h1>
 			<section class="details">
@@ -45,10 +46,11 @@ $smt->execute();
 				<h3>'.$phrase['category_name'].'</h3>
 				<p>Author <a href="#">User.Name</a></p>
 				<p class="price">Price: £123.45</p>
-				<form action="#" class="bid">
-					<input type="text" name="bid" placeholder="Add to cart" />
-					<input type="submit" value="Place bid" />
-				</form>
+				<form class="button-container">
+				<form action="#" class="button-container">
+					<button type="submit" class="Add-to-cart-button">Add to Cart</button>
+					<button type="submit" class="Buy-Now-button">Buy Now</button>
+			 </form>
 			</section>
 			<section class="description">
 				<p>Description: '.$phrase['description'].'</p>
@@ -69,6 +71,7 @@ $smt->execute();
 					<input type="submit" name="submit" value="Add Review" />
 				</form>
 			</section>
+			</div>
 		</article>
 		<hr>';
 		}
@@ -83,10 +86,6 @@ $smt->execute();
     
 ?>
 		
-
-
-
-
 		<footer>
 		<?php include 'footer.php';?>
 		</footer>

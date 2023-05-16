@@ -1,3 +1,4 @@
+
 <?php
 include("theconnection.php");
 
@@ -35,18 +36,20 @@ $smt->execute();
 			$flag++;
 
 			echo '<article class="product">
+			<div class="product-container">
 			<!-- <img src="product.png" alt="product name"> -->
 			<h1>'.$flag.'</h1>
 			<section class="details">
 				<h2><b>' . $phrase['title'] . '</b></h2>
 				<h3>'.$phrase['category_name'].'</h3>
 				<p>Auction created by <a href="#">User.Name</a></p>
-				<p class="price">Current bid: £123.45</p>
-				<time>Time left: 8 hours 3 minutes</time>
-				<form action="#" class="bid">
-					<input type="text" name="bid" placeholder="Enter bid amount" />
-					<input type="submit" value="Place bid" />
+				<p class="price">Buy Now: £123.45</p>
+				<form class="button-container">
+				<form action="#" class="button-container">
+					<button type="submit" class="Add-to-cart-button">Add to Cart</button>
+					<button type="submit" class="Buy-Now-button">Buy Now</button>
 				</form>
+
 			</section>
 			<section class="description">
 				<p>Description: '.$phrase['description'].'</p>
@@ -67,6 +70,7 @@ $smt->execute();
 					<input type="submit" name="submit" value="Add Review" />
 				</form>
 			</section>
+			</div>
 		</article>
 		<hr>';
 		}
@@ -76,13 +80,9 @@ $smt->execute();
 		?>
 		<hr />
 
-
-
-
 		<footer>
 		<?php include 'footer.php';?>
 		</footer>
 	</main>
 </body>
-
 </html>
