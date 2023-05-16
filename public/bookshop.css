@@ -12,7 +12,7 @@ body { font-family: 'Oxygen-Regular', sans-serif; background-color: #f6f5f4; max
 h1, h2, h3, h4 { font-weight: normal;}
 
 a, a:visited {color: #444;}
-a:hover {background-color: #000000; color: #ffffff;}
+/* a:hover {background-color: #000000; color: #ffffff;} */
 header {
 	margin-top: 1vw;
 	font-family: 'Univers-Light-Normal';

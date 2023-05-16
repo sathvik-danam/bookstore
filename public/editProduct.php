@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <h1>THIS PAGE EDITS AUCTIONS</h1>
+    <h1>THIS PAGE EDITS Products</h1>
     <div class="editauctions-form">
         <h2>EDIT AUCTION</h2>
         <?php 
