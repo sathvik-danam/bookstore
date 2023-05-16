@@ -9,7 +9,7 @@
      
         if(isset($_SESSION['AdminUsername']))
         {   
-            header("location: adminCategories.php");
+            header("location: adminpanel.php");
         }
 
         if(isset($_SESSION['UserUsername']))
@@ -37,7 +37,7 @@
         if($result['user_type'] == 'admin')
         {
             $_SESSION['AdminUsername'] = $_POST["Username"];
-            header("location: adminCategories.php");
+            header("location: adminpanel.php");
         }
         else
         {

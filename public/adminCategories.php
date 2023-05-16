@@ -135,7 +135,7 @@
         
         .msg {
             margin-top: 20px;
-            color:;
+            color:red;
             font-weight: bold;
         }
     </style>
@@ -196,11 +196,14 @@
         }
 
         ?>
+        
     </table>
+    
 	
 
-    <footer>
+
+</body>
+<footer>
 		<?php include 'footer.php';?>
 		</footer>
-</body>
 </html>

@@ -9,6 +9,6 @@ if(isset($_GET['cid']))
     $smt->execute();
 }
 
-header("location: userpanel.php");
+header("location: addProducts.php");
 
 ?>
