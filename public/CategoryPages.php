@@ -11,17 +11,12 @@ $smt->execute();
 <html>
 
 <head>
-	<title>ibuy Auctions</title>
+	<title>THE BOOKSHOP</title>
 	<link rel="stylesheet" href="bookshop.css" />
-	<a href="login.php">Signup or login</a>
 </head>
 
 <body>
-	<header>
-	<h1><span class="i">B</span><span class="b">OO</span><span class="u">K</span><span class="y">SHOP</span></h1>
-
-	</header>
-
+<?php include 'header.php';?>
 
 	<main>
 

@@ -14,40 +14,8 @@ include("theconnection.php");
 </head>
 
 <body>
-	<header>
-	<nav role="navigation">
-  <div id="menuToggle">
-
-    <input type="checkbox" />
-
-    <span></span>
-    <span></span>
-    <span></span>
-
-    <ul id="menu">
-	<a href="login.php"><li>Signup or login</li></a>
-      <a href="#"><li>Cart</li></a>
-      <a href="#"><li>Shop</li></a>
-	  <a href="#"><li>Contact Us</li></a>
-    </ul>
-  </div>
-</nav>
-	<!-- <a href="login.php">Signup or login</a> -->
-		<h1><span class="i">THE </span><span class="b">BOOK</span><span class="u"></span><span class="y">SHOP</span></h1>
-
-
-	</header>
-
-
-
-</div>
-	
-	<form method="post" action="ProductPage.php">
-			<input type="text" name="search" placeholder="Search a product in auction (title or description)" />
-			<input type="submit" name="submit" value="Search" />
-		</form>
-
-	<nav>
+<?php include 'header.php';?>
+<nav>
 		<ul>
 			<?php
 			$smt = $Conn->prepare('SELECT * FROM categories'); 
