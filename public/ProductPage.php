@@ -2,7 +2,7 @@
 <?php
 include("theconnection.php");
 
-$smt = $Conn->prepare('SELECT a.*,c.category_name FROM auctions as a,categories as c where a.category_id=c.category_id AND LOWER(a.title) like LOWER("%' . $_POST['search'] . '%") OR LOWER(a.description) like LOWER("%' . $_POST['search'] . '%")');
+$smt = $Conn->prepare('SELECT a.*,c.category_name FROM books as a,categories as c where a.category_id=c.category_id AND LOWER(a.title) like LOWER("%' . $_POST['search'] . '%") OR LOWER(a.description) like LOWER("%' . $_POST['search'] . '%")');
 $smt->execute();
 
 //$phrase = $smt->fetchAll();
@@ -39,8 +39,8 @@ $smt->execute();
 			<section class="details">
 				<h2><b>' . $phrase['title'] . '</b></h2>
 				<h3>'.$phrase['category_name'].'</h3>
-				<p>Auction created by <a href="#">User.Name</a></p>
-				<p class="price">Buy Now: £123.45</p>
+				<p>book created by <a href="#">Author.Name</a></p>
+				<p class="price">Price: £' . $phrase['price'] . '</p>
 				<form class="button-container">
 				<form action="#" class="button-container">
 					<button type="submit" class="Add-to-cart-button">Add to Cart</button>

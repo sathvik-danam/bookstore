@@ -2,7 +2,7 @@
     require_once("theconnection.php");
     if(isset($_GET['cid']))
     {
-        $smt = $Conn->prepare('SELECT * FROM auctions where auction_id='.$_GET['cid']);
+        $smt = $Conn->prepare('SELECT * FROM books where book_id='.$_GET['cid']);
         $smt->execute();
         $phrase = $smt->fetch();
         // print_r($phrase);
@@ -19,15 +19,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Auctions</title>
+    <title>Edit books</title>
 
 
 </head>
 
 <body>
-    <h1>THIS PAGE EDITS Products</h1>
-    <div class="editauctions-form">
-        <h2>EDIT AUCTION</h2>
+    <h1>THIS PAGE EDITS books</h1>
+    <div class="editbooks-form">
+        <h2>EDIT book</h2>
         <?php 
         if(isset($_GET['cid'])){
             $id = $_GET['cid'];
@@ -36,9 +36,9 @@
         ?>
 
             <input type="text" name="title" required placeholder="Update title name" value="<?php echo $phrase['title']; ?>" />
-            <input type="text" name="description" required placeholder="update auction description" value="<?php echo $phrase['description']; ?>" />
+            <input type="text" name="description" required placeholder="update book description" value="<?php echo $phrase['description']; ?>" />
 
-            <input type="submit" name="editauction" value="UPDATE" />
+            <input type="submit" name="editbook" value="UPDATE" />
 
         </form>
     </div>
@@ -55,7 +55,7 @@ if(isset($_GET['action']) == "update")
     $title_name = $_POST['title'];
     $description = $_POST['description'];
 
-    $smt = $Conn->prepare("UPDATE auctions SET `title`='$title_name', `description`='$description' WHERE `auction_id`='$id'");
+    $smt = $Conn->prepare("UPDATE books SET `title`='$title_name', `description`='$description' WHERE `book_id`='$id'");
     $smt->execute();
 
     if($smt){

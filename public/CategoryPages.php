@@ -2,7 +2,7 @@
 include("theconnection.php");
 if(isset($_GET['cid'])){
 $cid = $_GET['cid']; 
-$smt = $Conn->prepare('SELECT a.*,c.category_name FROM auctions as a,categories as c where a.category_id=c.category_id AND a.category_id='.$cid);
+$smt = $Conn->prepare('SELECT a.*,c.category_name FROM books as a,categories as c where a.category_id=c.category_id AND a.category_id='.$cid);
 $smt->execute();
 
 }
@@ -39,8 +39,8 @@ $smt->execute();
 			<section class="details">
 				<h2><b>' . $phrase['title'] . '</b></h2>
 				<h3>'.$phrase['category_name'].'</h3>
-				<p>Author <a href="#">User.Name</a></p>
-				<p class="price">Price: £123.45</p>
+				<p>Author <a href="#">Author name</a></p>
+				<p class="price">Price: £' . $phrase['price'] . '</p>
 				<form class="button-container">
 				<form action="#" class="button-container">
 					<button type="submit" class="Add-to-cart-button">Add to Cart</button>

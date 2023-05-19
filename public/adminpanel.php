@@ -26,7 +26,8 @@
       <li><a href="#">Dashboard</a></li>
       <li><a href="#">Users</a></li>
       <li><a href="adminCategories.php">Add Categories</a></li>
-      <li><a href="addBooks.php">Add Products</a></li>
+      <li><a href="addBooks.php">Add books</a></li>
+      <li><a href="addBooks.php">Order details</a></li>
       <form action="" method="post">
         <button type="submit" name="Logout" id="Logout">LOGOUT</button>
     </form>

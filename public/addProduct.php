@@ -14,11 +14,11 @@ if(!isset($_SESSION['UserUsername']))
 }
 require_once("theconnection.php");
 
-//This adds new auction
-if(isset($_POST['addauction']))
+//This adds new book
+if(isset($_POST['addbook']))
 {
     
-    $stmt = $Conn->prepare('INSERT INTO auctions (category_id, title, description)
+    $stmt = $Conn->prepare('INSERT INTO books (category_id, title, description)
     VALUES (:category_id, :title, :description)');
     $stmt->execute(array('category_id'=>$_POST['dropdown'],'title'=>$_POST['title'],'description'=>$_POST['description']));
     

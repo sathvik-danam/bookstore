@@ -90,26 +90,27 @@
         <button type="submit" name="Logout" id="Logout">LOGOUT</button>
     </form>
 </div>
-<!-- This is form for ADDING AUCTIONS -->
-<div class="addauctions-form">
-        <h2>ADD Auction</h2>
-        <form method="POST" action="addProduct.php?addAuction">
+<!-- This is form for ADDING books -->
+<div class="addbooks-form">
+        <h2>ADD book</h2>
+        <form method="POST" action="addProduct.php?addbook">
          
             <input type="text" name="title" required placeholder="title name">
             <select name="dropdown" id="dropdown">
-                <option>choose option</option>
-                <option value="1">Home and garden</option>
-                <option value="2">electronics</option>
-                <option value="3">Fasion</option>
-                <option value="4">Sports</option>
-                <option value="5">Health</option>
-                <option value="6">Toys</option>
-                <option value="7">Motors</option>
+            <option>choose option</option>
+<option value="1">Science fiction</option>
+<option value="2">Romance</option>
+<option value="3">Mystery</option>
+<option value="4">Film and television</option>
+<option value="5">Fashion and photography</option>
+<option value="6">Fantasy</option>
+<option value="7">Dystopian</option>
+<option value="8">Cook books</option>
             </select>
             <input type="text" name="description" required placeholder="description">
             <input type="text" name="endDate" required placeholder="endDate">
                 
-            <input type="submit" name="addauction" value="ADD">
+            <input type="submit" name="addbook" value="ADD">
         
         </form> 
     </div>
@@ -129,19 +130,19 @@
 
         <?php
        
-        $smt = $Conn->prepare('SELECT a.*,c.category_name FROM auctions as a, categories as c where a.category_id=c.category_id');
+        $smt = $Conn->prepare('SELECT a.*,c.category_name FROM books as a, categories as c where a.category_id=c.category_id');
         $smt->execute();
 // fetching all the values and assinging them to a variable 
         while ($phrase = $smt->fetch()) {
             echo "<tr>";
-            echo "<td class='grid-box'>" . $phrase['auction_id'] . "</td>";
+            echo "<td class='grid-box'>" . $phrase['book_id'] . "</td>";
             echo "<td class='grid-box'>" . $phrase['category_name'] . "</td>";
             echo "<td class='grid-box'>" . $phrase['title'] . "</td>";
             echo "<td class='grid-box'>" . $phrase['description'] . "</td>";
             echo "<td class='grid-box'>" . $phrase['endDate'] . "</td>";
 
-            echo '<td style="margin:20px"><a class="btn delete" href="deleteProduct.php?cid=' . $phrase["auction_id"] . '">DELETE</a></td>';
-            echo '<td><a class="btn edit" href="editProduct.php?cid=' . $phrase["auction_id"] .'">EDIT</a></td>';
+            echo '<td style="margin:20px"><a class="btn delete" href="deleteProduct.php?cid=' . $phrase["book_id"] . '">DELETE</a></td>';
+            echo '<td><a class="btn edit" href="editProduct.php?cid=' . $phrase["book_id"] .'">EDIT</a></td>';
 
             echo '</tr>';
         }
