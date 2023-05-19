@@ -2,11 +2,16 @@
 <?php
 include("theconnection.php");
 
-$smt = $Conn->prepare('SELECT a.*,c.category_name FROM books as a,categories as c where a.category_id=c.category_id AND LOWER(a.title) like LOWER("%' . $_POST['search'] . '%") OR LOWER(a.description) like LOWER("%' . $_POST['search'] . '%")');
+//$smt = $Conn->prepare('SELECT b.*,c.category_name FROM books as b,categories as c where b.category_id=c.category_id AND LOWER(b.title) like LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%") OR LOWER(b.description) like LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%")');
+
+$smt = $Conn->prepare('SELECT b.*, c.category_name FROM books b JOIN categories c ON b.category_id = c.category_id WHERE LOWER(b.title) LIKE LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%") OR LOWER(b.description) LIKE LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%")');
+
 $smt->execute();
 
+//die($smt->debugDumpParams());
+
 //$phrase = $smt->fetchAll();
-//print_r($phrase);
+//die(var_dump($phrase));
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,12 +44,11 @@ $smt->execute();
 			<section class="details">
 				<h2><b>' . $phrase['title'] . '</b></h2>
 				<h3>'.$phrase['category_name'].'</h3>
-				<p>book created by <a href="#">Author.Name</a></p>
-				<p class="price">Price: £' . $phrase['price'] . '</p>
-				<form class="button-container">
-				<form action="#" class="button-container">
-					<button type="submit" class="Add-to-cart-button">Add to Cart</button>
-					<button type="submit" class="Buy-Now-button">Buy Now</button>
+				<p>Auction created by <a href="#">authoerName</a></p>
+				<p class="price">Buy Now: £'.$phrase['price'].'</p>
+				<form action="cart.php" method="POST" class="button-container">
+					<button type="submit" name="add_to_cart" value="" class="Add-to-cart-button">Add to Cart</button>
+					<button type="submit" name="buy_now" value=""  class="Buy-Now-button">Buy Now</button>
 				</form>
 
 			</section>

@@ -43,8 +43,11 @@ $smt->execute();
 				<p class="price">Price: £' . $phrase['price'] . '</p>
 				<form class="button-container">
 				<form action="#" class="button-container">
+
+				<input type="number" name="quantity" value="1" min="1" class="form-control" />
 					<button type="submit" class="Add-to-cart-button">Add to Cart</button>
 					<button type="submit" class="Buy-Now-button">Buy Now</button>
+					
 			 </form>
 			</section>
 			<section class="description">
