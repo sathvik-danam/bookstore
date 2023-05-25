@@ -42,6 +42,8 @@ require_once("theconnection.php");
 
 <?php
 
+require_once("theconnection.php");
+
 if(isset($_GET['action']) == "update")
 {
     $id= $_GET['id'];

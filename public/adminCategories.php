@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once("theconnection.php");
     
     if(isset($_POST['Logout']))
     {
@@ -11,7 +11,7 @@
     {
         header("location: login.php");
     }
-    require_once("theconnection.php");
+
 ?>
 
 <!DOCTYPE html>

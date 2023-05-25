@@ -1,6 +1,7 @@
-<?php
-    session_start();
-    
+<?php 
+
+    require_once("theconnection.php");
+ 
     if(isset($_POST['Logout']))
     {
         session_destroy();
@@ -11,7 +12,25 @@
     {
         header("location: Userlogin.php");
     }
-    require_once("theconnection.php");
+
+    if(isset($_POST['addbook']))
+    {
+    
+        $stmt = $Conn->prepare('INSERT INTO books (category_id, title, description, endDate)
+        VALUES (:category_id, :title, :description, :endDate)');
+        $stmt->execute(array(':category_id'=>$_POST['dropdown'],':title'=>$_POST['title'],':description'=>$_POST['description'], ':endDate'  => $_POST['endDate']));
+        
+        if($stmt){
+            echo 'success';
+            
+            
+        }else{
+            echo 'Might be exustss';
+                   
+        }
+        // header("location: userpanel.php?msg=".$msg);
+    }
+  
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +112,7 @@
 <!-- This is form for ADDING books -->
 <div class="addbooks-form">
         <h2>ADD book</h2>
-        <form method="POST" action="addProduct.php?addbook">
+        <form method="POST" action>
          
             <input type="text" name="title" required placeholder="title name">
             <select name="dropdown" id="dropdown">

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $host = "mysql";
 $username = "student";
 $password = "student";
@@ -13,5 +15,6 @@ try {
 } catch (PDOException $ex) {
     die($ex->getMessage());
 }
+
 
 ?>

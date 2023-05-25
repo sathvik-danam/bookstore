@@ -1,5 +1,5 @@
 <?php
-include("theconnection.php");
+require_once("theconnection.php");
 // echo "<pre>";
 // print_r($smt->fetchAll());
 // die(); 

@@ -1,10 +1,18 @@
-<?php var_dump($_POST);
+<?php
 include("theconnection.php"); 
 
-if (!empty($_POST['make_order'])) {
+var_dump($_POST);
+
+if (isset($_POST['make_order'])) {
 
 
     die('Order qwas made');
+} elseif (isset($_POST['add_to_cart'])) {
+
+    echo 'Added Book';
+
+    $_SESSION['cart'][] = ['book_id' => $_POST['book_id'], 'quantity' => '1'];
+
 }
 
 ?>
@@ -107,16 +115,23 @@ $smt->execute();
 $flag = 0;
 $grand_total = 0;
 echo $smt->rowCount() . " records found.<br><hr><br>";
-while ($order = $smt->fetch()) {
+//while ($order = $smt->fetch()) {
+//  $_SESSION['cart']['0']['book_id', 'quantity']
+//  ...              ['1']['book_id', ]
+//$_SESSION = array();
+$_SESSION['cart']['0'] = ['book_id' => 1, 'quantity' => 1];
+$_SESSION['cart']['1'] = ['book_id' => 1, 'quantity' => 1];
+foreach ($_SESSION['cart'] as $key => $cart) {
     //die(var_dump($order));
     $flag++;
-    $grand_total += $order['price'] * $order['order_quantity'];
+    //$grand_total += $order['price'] * $order['order_quantity'];
+    //die(var_dump($cart));
 ?>
         <tr>
-          <td>Product <?= $order['order_id'] ?></td>
-          <td>£<?= $order['total'] ?></td>
-          <td><?= $order['order_quantity'] ?></td>
-          <td>£<?= $order['price'] ?></td>
+          <td>Book: <?= $cart['book_id']; ?></td>
+          <td>£<?= NULL; ?></td>
+          <td><?= $cart['quantity']; ?></td>
+          <td>£<?= NULL; ?></td>
         </tr>
 <?php } ?>
       </tbody>

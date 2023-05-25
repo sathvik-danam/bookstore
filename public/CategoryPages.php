@@ -1,5 +1,5 @@
 <?php
-include("theconnection.php");
+require_once("theconnection.php");
 if(isset($_GET['cid'])){
 $cid = $_GET['cid']; 
 $smt = $Conn->prepare('SELECT a.*,c.category_name FROM books as a,categories as c where a.category_id=c.category_id AND a.category_id='.$cid);

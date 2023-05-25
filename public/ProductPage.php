@@ -1,6 +1,5 @@
-
 <?php
-include("theconnection.php");
+require_once("theconnection.php");
 
 //$smt = $Conn->prepare('SELECT b.*,c.category_name FROM books as b,categories as c where b.category_id=c.category_id AND LOWER(b.title) like LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%") OR LOWER(b.description) like LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%")');
 
@@ -47,6 +46,7 @@ $smt->execute();
 				<p>Auction created by <a href="#">authoerName</a></p>
 				<p class="price">Buy Now: £'.$phrase['price'].'</p>
 				<form action="cart.php" method="POST" class="button-container">
+			      <input type="hidden" name="book_id" value="' . $phrase['book_id'] . '" />
 					<button type="submit" name="add_to_cart" value="" class="Add-to-cart-button">Add to Cart</button>
 					<button type="submit" name="buy_now" value=""  class="Buy-Now-button">Buy Now</button>
 				</form>

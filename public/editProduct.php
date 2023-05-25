@@ -11,6 +11,23 @@
     {
         // Redirect ??
     }
+
+if(isset($_GET['action']) == "update")
+{
+    $id= $_GET['cid'];
+    $title_name = $_POST['title'];
+    $description = $_POST['description'];
+    $date = $_POST['endDate'];
+
+    $smt = $Conn->prepare("UPDATE books SET `title`='$title_name', `description`='$description', `endDate`='$date' WHERE `book_id`='$id'");
+    $smt->execute();
+
+    if($smt){
+        echo 'Updated';
+    }else{
+        echo 'Failed';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +54,8 @@
 
             <input type="text" name="title" required placeholder="Update title name" value="<?php echo $phrase['title']; ?>" />
             <input type="text" name="description" required placeholder="update book description" value="<?php echo $phrase['description']; ?>" />
-
+            <input type="text" name="endDate" required placeholder="yyyy-mm-dd" value="<?= $phrase['endDate']; ?>" />
+             
             <input type="submit" name="editbook" value="UPDATE" />
 
         </form>
@@ -46,22 +64,3 @@
    
 </body>
 </html>
-
-<?php
-
-if(isset($_GET['action']) == "update")
-{
-    $id= $_GET['cid'];
-    $title_name = $_POST['title'];
-    $description = $_POST['description'];
-
-    $smt = $Conn->prepare("UPDATE books SET `title`='$title_name', `description`='$description' WHERE `book_id`='$id'");
-    $smt->execute();
-
-    if($smt){
-        echo 'Updated';
-    }else{
-        echo 'Failed';
-    }
-}
-?>

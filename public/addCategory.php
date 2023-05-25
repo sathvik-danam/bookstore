@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+require_once("theconnection.php");
     
 if(isset($_POST['Logout']))
 {
@@ -12,7 +12,6 @@ if(!isset($_SESSION['AdminUsername']))
 {
     header("location: login.php");
 }
-require_once("theconnection.php");
 
 if(isset($_POST['addcategory']))
 {

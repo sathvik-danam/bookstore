@@ -1,11 +1,11 @@
 <?php
 
-    session_start();
+    require_once("theconnection.php");
     Execute();
     
     function Execute()
     {
-        require_once("theconnection.php");
+        global $Conn;
      
         if(isset($_SESSION['AdminUsername']))
         {   
