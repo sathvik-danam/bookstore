@@ -1,9 +1,15 @@
 <?php
 require_once("theconnection.php");
+//die(var_dump($_SESSION['cart']));
 
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+	require_once('cart.php');
+
+//die(var_dump($_SESSION['cart']));
 //$smt = $Conn->prepare('SELECT b.*,c.category_name FROM books as b,categories as c where b.category_id=c.category_id AND LOWER(b.title) like LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%") OR LOWER(b.description) like LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%")');
 
-$smt = $Conn->prepare('SELECT b.*, c.category_name FROM books b JOIN categories c ON b.category_id = c.category_id WHERE LOWER(b.title) LIKE LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%") OR LOWER(b.description) LIKE LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '' ) . '%")');
+$smt = $Conn->prepare('SELECT b.*, c.category_name,oi.* FROM books b JOIN categories c ON b.category_id = c.category_id JOIN order_items oi ON b.book_id = oi.book_id WHERE LOWER(b.title) LIKE LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '') . '%") OR LOWER(b.description) LIKE LOWER("%' . (!empty($_POST['search']) ? $_POST['search'] : '') . '%")');
 
 $smt->execute();
 
@@ -11,6 +17,7 @@ $smt->execute();
 
 //$phrase = $smt->fetchAll();
 //die(var_dump($phrase));
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,11 +25,11 @@ $smt->execute();
 <head>
 	<title>The bookshop</title>
 	<link rel="stylesheet" href="bookshop.css" />
-	
+
 </head>
 
 <body>
-<?php include 'header.php';?>
+	<?php include 'header.php'; ?>
 
 
 	<main>
@@ -39,21 +46,21 @@ $smt->execute();
 			echo '<article class="product">
 			<div class="product-container">
 			<!-- <img src="product.png" alt="product name"> -->
-			<h1>'.$flag.'</h1>
+			<h1>' . $flag . '</h1>
 			<section class="details">
 				<h2><b>' . $phrase['title'] . '</b></h2>
-				<h3>'.$phrase['category_name'].'</h3>
+				<h3>' . $phrase['category_name'] . '</h3>
 				<p>Auction created by <a href="#">authoerName</a></p>
-				<p class="price">Buy Now: £'.$phrase['price'].'</p>
-				<form action="cart.php" method="POST" class="button-container">
+				<p class="price">Buy Now: £' . $phrase['order_item_price'] . '</p>
+				<form action method="POST" class="button-container">
 			      <input type="hidden" name="book_id" value="' . $phrase['book_id'] . '" />
 					<button type="submit" name="add_to_cart" value="" class="Add-to-cart-button">Add to Cart</button>
-					<button type="submit" name="buy_now" value=""  class="Buy-Now-button">Buy Now</button>
+					<!-- <button type="submit" name="buy_now" value=""  class="Buy-Now-button">Buy Now</button> -->
 				</form>
 
 			</section>
 			<section class="description">
-				<p>Description: '.$phrase['description'].'</p>
+				<p>Description: ' . $phrase['description'] . '</p>
 			</section>
 
 			<section class="reviews">
@@ -75,15 +82,16 @@ $smt->execute();
 		</article>
 		<hr>';
 		}
-		if ($flag<=0) {
+		if ($flag <= 0) {
 			echo "No record found";
 		}
 		?>
 		<hr />
 
 		<footer>
-		<?php include 'footer.php';?>
+			<?php include 'footer.php'; ?>
 		</footer>
 	</main>
 </body>
+
 </html>
