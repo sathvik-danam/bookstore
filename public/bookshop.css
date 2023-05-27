@@ -9,10 +9,10 @@
 }
 
 body { font-family: 'Oxygen-Regular', sans-serif; background-color: #f6f5f4; max-width: 100vw; overflow-x: hidden;}
-h1, h2, h3, h4 { font-weight: normal; }
+h1, h2, h3, h4 { font-weight: normal;}
 
 a, a:visited {color: #444;}
-a:hover {background-color: #000000; color: #ffffff;}
+/* a:hover {background-color: #000000; color: #ffffff;} */
 header {
 	margin-top: 1vw;
 	font-family: 'Univers-Light-Normal';
@@ -27,6 +27,7 @@ header {
 header h1 {
 	text-align: center;
 	font-size: 5em;
+	color: #3665f3;
 }
 
 body > img { width: 100vw; }
@@ -293,6 +294,130 @@ article .description {
 	padding-bottom: 3em;
 }
 
+/* Apply CSS to the .product-container class to center its content */
+.product-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+  }
+  
+  /* Apply CSS to each element inside the .product-container class */
+  .product-container img {
+	max-width: 100%;
+  }
+  
+  .product-container h1 {
+	margin: 10px 0;
+	font-size: 24px;
+	color: #333;
+  }
+  
+  .product-container h2 {
+	margin: 10px 0;
+	font-size: 20px;
+	color: #333;
+  }
+  
+  .product-container h3 {
+	margin: 10px 0;
+	font-size: 16px;
+	color: #333;
+  }
+  
+  .product-container p {
+	margin: 10px 0;
+	font-size: 16px;
+	color: #333;
+  }
+  
+  .product-container .price {
+	font-size: 24px;
+	color: #f00;
+  }
+  
+  .product-container time {
+	font-size: 16px;
+	color: #333;
+  }
+  
+  .product-container form {
+	margin-top: 20px;
+  }
+  
+  .product-container form input[type="text"], .product-container form input[type="submit"] {
+	padding: 5px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #333;
+	border: none;
+  }
+  
+  .product-container form input[type="submit"] {
+	margin-left: 10px;
+  }
+  
+  .product-container label {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #333;
+  }
+  
+  .product-container textarea {
+	width: 100%;
+	height: 100px;
+	padding: 5px;
+	font-size: 16px;
+	color: #333;
+	border: 1px solid #ccc;
+  }
+  
+  .product-container input[type="submit"][name="submit"] {
+	margin-top: 10px;
+	background-color: #333;
+	color: #fff;
+	border: none;
+	padding: 5px;
+	font-size: 16px;
+	cursor: pointer;
+  }
+  
+  .product-container ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+  }
+  
+  .product-container ul li {
+	margin: 10px 0;
+	font-size: 16px;
+	color:#395144 ;
+  }
+  
+  .product-container ul li strong {
+	font-weight: bold;
+  }
+  
+  .product-container ul li em {
+	font-style: italic;
+  }
+  
+  .product-container section.description {
+	margin-top: 20px;
+  }
+  
+  .product-container section.reviews {
+	margin-top: 20px;
+  }
+  
+  .product-container section.reviews form {
+	margin-top: 20px;
+  }
+
+
+
 .price {color: rgb(0, 0, 0);}
 article.product .price {text-align: left;}
 
@@ -352,7 +477,7 @@ main form label, main form input {
 }
 
 main form input[type=submit] {
-	background-color: #3665f3;
+	background-color:blue;
 	color: white;
 	flex-grow: 0;
 	margin-left: auto;
@@ -362,3 +487,138 @@ main form input[type=submit] {
 	border: 0;
 
 }
+/* CSS code for Add to Cart and Buy Now buttons */
+.button-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+  }
+  
+  .Add-to-cart-button,
+  .Buy-Now-button {
+	flex-grow: 1;
+	padding: 10px 20px;
+	width: 50%;
+	height: 40px;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin-top: 20px;
+  }
+  
+  .Add-to-cart-button:hover,
+  .Buy-Now-button:hover {
+	background-color:  #DDAF73;
+  }
+  
+
+  .Add-to-cart-button {
+	background-color:#AA8B56 ;
+  }
+  
+  .Buy-Now-button {
+	background-color: #395144;
+  }
+  
+  .Buy-Now-button:hover {
+	background-color:#4E6C50 ;
+  }
+
+  .Add-to-cart-button {
+	text-transform: uppercase;
+	font-weight: bold;
+  }
+  
+  .Buy-Now-button {
+	text-transform: uppercase;
+	font-weight: bold;
+  }
+  
+/*login and register pages css*/
+
+
+  .login-form, 
+  .register-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	
+  }
+  
+  .login-form h2, 
+  .register-form h2 {
+	text-align: center;
+	margin-bottom: 20px;
+  }
+  
+  .login-form form, 
+  .register-form form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
+  }
+  
+  .login-form .input-field, 
+  .register-form .input-field {
+	margin-bottom: 10px;
+	width: 100%;
+  }
+  
+  .login-form input[type="text"],
+  .login-form input[type="password"], 
+  .register-form input[type="text"],
+  .register-form input[type="text"]{
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #395144;
+	color: white;
+	font-size: 16px;
+  }
+
+  .login-form input[type="password"], 
+  .register-form input[type="password"]{
+	padding: 8px; /* Increase the padding for the password input */
+  }
+  
+  .login-form button[type="submit"],
+  .register-form button[type="submit"] {
+	width: 50%;
+	padding: 5px;
+	background-color: #AA8B56;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+  }
+  
+  .login-form a, 
+  .register-form a{
+	margin-top: 10px;
+	text-align: center;
+  }
+  
+  .login-form input[type="text"]:focus,
+  .login-form input[type="password"]:focus,
+  .login-form button[type="submit"]:focus,
+  .register-form input[type="text"]:focus,
+  .register-form input[type="password"]:focus,
+  .register-form button[type="submit"]:focus {
+	outline: none;
+	box-shadow: 0 0 5px #AA8B56;
+  }
+
+  .register-form .register-now {
+	display: flex;
+	justify-content: center;
+  }
+  
+  

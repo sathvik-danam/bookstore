@@ -1,8 +1,8 @@
 <?php
-include("theconnection.php");
+require_once("theconnection.php");
 if(isset($_GET['cid'])){
 $cid = $_GET['cid']; 
-$smt = $Conn->prepare('SELECT a.*,c.category_name FROM auctions as a,categories as c where a.category_id=c.category_id AND a.category_id='.$cid);
+$smt = $Conn->prepare('SELECT a.*,c.category_name FROM books as a,categories as c where a.category_id=c.category_id AND a.category_id='.$cid);
 $smt->execute();
 
 }
@@ -11,23 +11,18 @@ $smt->execute();
 <html>
 
 <head>
-	<title>ibuy Auctions</title>
+	<title>THE BOOKSHOP</title>
 	<link rel="stylesheet" href="bookshop.css" />
-	<a href="login.php">Signup or login</a>
 </head>
 
 <body>
-	<header>
-	<h1><span class="i">B</span><span class="b">OO</span><span class="u">K</span><span class="y">SHOP</span></h1>
-
-	</header>
-
+<?php include 'header.php';?>
 
 	<main>
 
 
 
-		<h1>YOUR SELECTED Categories</h1>
+		<h1>YOU SELECTED Categories</h1>
 		<?php
 
     if(isset($_GET['cid']))
@@ -38,17 +33,22 @@ $smt->execute();
 			$flag++;
 
 			echo '<article class="product">
+			<div class="product-container">
 			<!-- <img src="product.png" alt="product name"> -->
 			<h1>'.$flag.'</h1>
 			<section class="details">
 				<h2><b>' . $phrase['title'] . '</b></h2>
 				<h3>'.$phrase['category_name'].'</h3>
-				<p>Author <a href="#">User.Name</a></p>
-				<p class="price">Price: £123.45</p>
-				<form action="#" class="bid">
-					<input type="text" name="bid" placeholder="Add to cart" />
-					<input type="submit" value="Place bid" />
-				</form>
+				<p>Author <a href="#">Author name</a></p>
+				<p class="price">Price: £' . $phrase['price'] . '</p>
+				<form class="button-container">
+				<form action="#" class="button-container">
+
+				<input type="number" name="quantity" value="1" min="1" class="form-control" />
+					<button type="submit" class="Add-to-cart-button">Add to Cart</button>
+					<button type="submit" class="Buy-Now-button">Buy Now</button>
+					
+			 </form>
 			</section>
 			<section class="description">
 				<p>Description: '.$phrase['description'].'</p>
@@ -69,6 +69,7 @@ $smt->execute();
 					<input type="submit" name="submit" value="Add Review" />
 				</form>
 			</section>
+			</div>
 		</article>
 		<hr>';
 		}
@@ -83,10 +84,6 @@ $smt->execute();
     
 ?>
 		
-
-
-
-
 		<footer>
 		<?php include 'footer.php';?>
 		</footer>
