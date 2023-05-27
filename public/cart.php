@@ -9,18 +9,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   if (isset($_POST['add_to_cart'])) {
     echo 'Book was added to Cart';
-    $_SESSION['cart'][] = ['book_id' => $_POST['book_id'], 'quantity' => '1'];
+    if (empty($_SESSION['cart'])) $_SESSION['cart'][] = ['book_id' => $_POST['book_id'], 'quantity' => '1', 'total' => ''];
+    else
+      foreach ($_SESSION['cart'] as $key => $cart) {
+        if ($cart['book_id'] == $_POST['book_id'])
+          $_SESSION['cart'][$key]['quantity'] += 1;
+        else
+          $_SESSION['cart'][] = ['book_id' => $_POST['book_id'], 'quantity' => '1'];
+      }
   } //else if (isset($_POST['buy_now']) || isset($_POST['cart_id'])) {  
   //include('cart.php');
   //die();
 } else {
 
-  $smt = $Conn->prepare('SELECT * FROM orders JOIN order_items ON orders.order_item_id = order_items.order_item_id JOIN books ON order_items.book_id = books.book_id;');
+  $smt = $Conn->prepare('SELECT * FROM books;');
 
   $smt->execute();
 ?>
   <!DOCTYPE html>
   <html>
+  <?php include 'header.php'; ?>
+  <link rel="stylesheet" href="bookshop.css" />
 
   <head>
     <title>Cart</title>
@@ -66,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
 
       .total {
-        text-align: right;
+        text-align: left;
         font-weight: bold;
       }
 
@@ -101,12 +110,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
 
       input[type="checkbox"]:checked:after {
-        /* Heres your symbol replacement */
+
         content: "X";
         color: #fff;
-        /* The following positions my tick in the center, 
-     * but you could just overlay the entire box
-     * with a full after element with a background if you want to */
+
         position: absolute;
         left: 50%;
         top: 50%;
@@ -114,15 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         -moz-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-        /*
-     * If you want to fully change the check appearance, use the following:
-     * content: " ";
-     * width: 100%;
-     * height: 100%;
-     * background: blue;
-     * top: 0;
-     * left: 0;
-     */
+
       }
     </style>
   </head>
@@ -130,14 +129,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <body>
     <h1>Your Cart</h1>
     <div class="cart-container">
-      <form action method="POST">
+      <form action="checkout.php" method="POST">
         <table>
           <thead>
             <tr>
               <th>Remove</th>
-              <th>Item</th>
+              <th>Title</th>
               <th>Price</th>
               <th>Quantity</th>
+              <th>Shipping charges</th>
               <th>Total</th>
             </tr>
           </thead>
@@ -146,30 +146,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php
             $flag = 0;
             $grand_total = 0;
-            echo $smt->rowCount() . " records found.<br><hr><br>";
+
             while ($order = $smt->fetch()) {
-              //  $_SESSION['cart']['0']['book_id', 'quantity']
-              //  ...              ['1']['book_id', ]
+
               if (empty($_SESSION['cart']))
                 $_SESSION['cart'] = array();
-              //$_SESSION['cart']['0'] = ['book_id' => 1, 'quantity' => 1];
-              //$_SESSION['cart']['1'] = ['book_id' => 1, 'quantity' => 1];
+
               foreach ($_SESSION['cart'] as $key => $cart) {
                 //die(var_dump($order));
                 $flag++;
                 //$grand_total += $order['price'] * $order['order_quantity'];
                 //die(var_dump($cart));
-                $smt = $Conn->prepare('SELECT * FROM books JOIN order_items ON books.book_id = order_items.book_id WHERE `books`.`book_id` = ' . $cart['book_id'] . ';');
+                $smt = $Conn->prepare('SELECT * FROM books WHERE `books`.`book_id` = ' . $cart['book_id'] . ';');
 
                 $smt->execute();
                 while ($book = $smt->fetch()) {
+                  $item_total = ($book['price'] * $cart['quantity']) + 2.30;
+                  $grand_total += $item_total;
             ?>
                   <tr>
                     <td><input class="delete" type="checkbox" style="content: 'x';" name="cart_id" value="<?= $key; ?>"></td>
-                    <td>Book Title: <?= $book['title']; ?></td>
-                    <td>£<?= $book['order_item_price']; ?></td>
-                    <td><?= $book['order_item_quantity']; ?></td>
-                    <td>£<?= NULL; ?></td>
+                    <td> <?= $book['title']; ?></td>
+                    <td>£<?= $book['price']; ?></td>
+                    <td><?= $cart['quantity']; ?></td>
+                    <td>£ 2.30<?= NULL; ?></td>
+                    <td>£<?= $item_total; ?></td>
                   </tr>
             <?php
                 }
@@ -179,12 +180,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <tfoot>
             <tr>
               <td class="total" colspan="3">Total:</td>
+              <td></td>
+              <td></td>
               <td class="total">£<?= $grand_total ?></td>
             </tr>
           </tfoot>
         </table>
-        <button type="submit" name="make_order" value="">Place Order</button>
+        <button type="submit" name="make_order" value="" >checkout</button>
       </form>
+      
     </div>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script>
@@ -195,6 +199,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
     </script>
   </body>
+  <footer>
+    <?php include 'footer.php'; ?>
+  </footer>
 
   </html>
 <?php } ?>

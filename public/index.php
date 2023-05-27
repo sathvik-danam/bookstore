@@ -35,7 +35,7 @@ require_once("theconnection.php");
 
 		<?php
 
-		$smt = $Conn->prepare('SELECT * FROM orders JOIN order_items ON orders.order_item_id = order_items.order_item_id JOIN books ON order_items.book_id = books.book_id; DESC LIMIT 10');
+		$smt = $Conn->prepare('SELECT * FROM books LIMIT 5;');
 		$smt->execute();
 		echo $smt->rowCount() . ' records found.<br><hr><br><ul class="productList">';
 		while ($phrase = $smt->fetch()) {
@@ -44,7 +44,7 @@ require_once("theconnection.php");
 				<article>
 					<h2>' . $phrase['title'] . '</h2>					
 					<p>' . $phrase['description'] . '</p>
-					<p class="price">Price: £' . $phrase['order_item_price'] . '</p>
+					<p class="price">Price: £' . $phrase['price'] . '</p>
 					<a href="ProductPage.php?pid=' . $phrase['book_id'] . '" class="more bookLink">More &gt;&gt;</a>
 				</article>
 			</li>';

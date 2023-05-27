@@ -24,15 +24,15 @@
     <h2>User Panel</h2>
     <ul>
       <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Users</a></li>
-      <li><a href="#">Settings</a></li>
+      <li><a href="orderHistory.php">Order History</a></li>
+      <li><a href="userAddress.php">Address</a></li>
       <form action="" method="post">
         <button type="submit" name="Logout" id="Logout">LOGOUT</button>
     </form>
     </ul>
   </div>
   <div class="content">
-    <h1>Welcome to the Admin Panel</h1>
+    <h1>Welcome to the User Panel</h1>
     <p>This is the main content area.</p>
   </div>
 </body>

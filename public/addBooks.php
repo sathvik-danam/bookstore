@@ -1,5 +1,4 @@
 <?php
-
 require_once("theconnection.php");
 
 if (isset($_POST['Logout'])) {
@@ -17,7 +16,9 @@ if (isset($_POST['addbook'])) {
         VALUES (:category_id, :title, :description, :endDate)');
     $stmt->execute(array(':category_id' => $_POST['dropdown'], ':title' => $_POST['title'], ':description' => $_POST['description'], ':endDate'  => $_POST['endDate']));
 
-    $smt = $Conn->prepare('UPDATE `order_items` SET `order_item_price`="' . $price . '" WHERE `book_id`=' . $id . ';');
+    $id = $Conn->lastInsertId();
+    
+    $smt = $Conn->prepare('UPDATE `order_items` SET `order_item_price`="' . $_POST['price'] . '" WHERE `book_id`=' . $id . ';');
     $smt->execute();
 
     if ($stmt) {
@@ -133,7 +134,7 @@ if (isset($_POST['addbook'])) {
                 <option value="8">Cook books</option>
             </select>
             <input type="text" name="description" required placeholder="description" />
-            <input type="text" name="endDate" required placeholder="endDate" />
+            <input type="text" name="endDate" required placeholder="publish date" />
             <input type="text" name="price" required placeholder="0.00" />
             <input type="submit" name="addbook" value="ADD" />
 
@@ -156,10 +157,11 @@ if (isset($_POST['addbook'])) {
 
         <?php
 
-        $smt = $Conn->prepare('SELECT b.*,categories.category_name,order_items.* FROM books as b JOIN categories ON b.category_id = categories.category_id JOIN order_items ON b.book_id = order_items.book_id;');
+        $smt = $Conn->prepare('SELECT b.*,categories.category_name FROM books as b JOIN categories ON b.category_id = categories.category_id ;');
         $smt->execute();
         // fetching all the values and assinging them to a variable 
         while ($phrase = $smt->fetch()) {
+
             //die(var_dump($phrase));
             echo "<tr>";
             echo "<td class='grid-box'>" . $phrase['book_id'] . "</td>";
@@ -167,7 +169,7 @@ if (isset($_POST['addbook'])) {
             echo "<td class='grid-box'>" . $phrase['title'] . "</td>";
             echo "<td class='grid-box'>" . $phrase['description'] . "</td>";
             echo "<td class='grid-box'>" . $phrase['endDate'] . "</td>";
-            echo "<td class='grid-box'>" . $phrase['order_item_price'] . "</td>";
+            echo "<td class='grid-box'>" . $phrase['price'] . "</td>";
             echo '<td style="margin:20px"><a class="btn delete" href="deleteProduct.php?cid=' . $phrase["book_id"] . '">DELETE</a></td>';
             echo '<td><a class="btn edit" href="editProduct.php?cid=' . $phrase["book_id"] . '">EDIT</a></td>';
 

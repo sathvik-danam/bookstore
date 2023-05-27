@@ -13,7 +13,7 @@
     <ul id="menu">
 	<a href="login.php"><li>Signup or login</li></a>
       <a href="cart.php"><li>Cart</li></a>
-      <a href="#"><li>Shop</li></a>
+      <a href="ProductPage.php"><li>Shop</li></a>
 	  <a href="aboutUs.php"><li>About Us</li></a>
     </ul>
   </div>
