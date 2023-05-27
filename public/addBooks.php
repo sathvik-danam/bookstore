@@ -12,14 +12,20 @@ if (!isset($_SESSION['AdminUsername'])) {
 
 if (isset($_POST['addbook'])) {
 
-    $stmt = $Conn->prepare('INSERT INTO books (category_id, title, description, endDate)
-        VALUES (:category_id, :title, :description, :endDate)');
-    $stmt->execute(array(':category_id' => $_POST['dropdown'], ':title' => $_POST['title'], ':description' => $_POST['description'], ':endDate'  => $_POST['endDate']));
+    $stmt = $Conn->prepare('INSERT INTO books (category_id, title, description, endDate, price)
+        VALUES (:category_id, :title, :description, :endDate, :price)');
+    $stmt->execute(array(
+        ':category_id' => $_POST['dropdown'],
+        ':title' => $_POST['title'],
+        ':description' => $_POST['description'],
+        ':endDate' => $_POST['endDate'],
+        ':price' => $_POST['price']
+    ));
+    
 
     $id = $Conn->lastInsertId();
     
-    $smt = $Conn->prepare('UPDATE `order_items` SET `order_item_price`="' . $_POST['price'] . '" WHERE `book_id`=' . $id . ';');
-    $smt->execute();
+
 
     if ($stmt) {
         echo 'success';
