@@ -37,7 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<?php
 if (isset($_GET['pid'])) {
 	$bookId = $_GET['pid'];
-	$smt = $Conn->prepare('SELECT b.*, c.category_name, oi.order_item_price FROM books b JOIN categories c ON b.category_id = c.category_id JOIN order_items oi ON b.book_id = oi.book_id WHERE b.book_id = ?');
+	$smt = $Conn->prepare('SELECT b.*, c.category_name FROM books b JOIN categories c ON b.category_id = c.category_id WHERE b.book_id = ?');
+$smt->execute(array($_GET['cid']));
+
 	$smt->bindParam(1, $bookId);
 	$smt->execute();
 	$book = $smt->fetch();

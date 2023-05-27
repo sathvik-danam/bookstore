@@ -1,7 +1,7 @@
 <?php
 require_once("theconnection.php");
 if (isset($_GET['cid'])) {
-    $smt = $Conn->prepare('SELECT * FROM books JOIN order_items ON books.book_id = order_items.book_id where books.book_id=' . $_GET['cid']);
+$smt = $Conn->prepare('SELECT * FROM books WHERE book_id=' . $_GET['cid']);
     $smt->execute();
     $phrase = $smt->fetch();
     // print_r($phrase);
@@ -16,12 +16,15 @@ if (isset($_GET['action']) == "update") {
     $date = $_POST['endDate'];
     $price = $_POST['price'];
 
-    $smt = $Conn->prepare("UPDATE books SET `title`='$title_name', `description`='$description', `endDate`='$date' WHERE `book_id`='$id'");
-    $smt->execute();
-
-
-    $smt = $Conn->prepare('UPDATE `order_items` SET `order_item_price`="' . $price . '" WHERE `book_id`=' . $id . ';');
-    $smt->execute();
+    $smt = $Conn->prepare("UPDATE books SET `title`=:title_name, `description`=:description, `endDate`=:date, `price`=:price WHERE `book_id`=:id");
+    $smt->execute(array(
+        ':title_name' => $title_name,
+        ':description' => $description,
+        ':date' => $date,
+        ':price' => $price,
+        ':id' => $id
+    ));
+    
 
     if ($smt) {
         echo 'Updated';
@@ -29,17 +32,7 @@ if (isset($_GET['action']) == "update") {
         echo 'Failed';
     }
 
-    /*
 
-UPDATE books
-SET title = 'High Sky'
-WHERE book_id = 2;
-
-UPDATE order_items
-SET order_item_price = 88
-WHERE book_id = 2;
-
-*/
 }
 ?>
 <!DOCTYPE html>
@@ -68,7 +61,7 @@ WHERE book_id = 2;
         <input type="text" name="title" required placeholder="Update title name" value="<?php echo $phrase['title']; ?>" />
         <input type="text" name="description" required placeholder="update book description" value="<?php echo $phrase['description']; ?>" />
         <input type="text" name="endDate" required placeholder="yyyy-mm-dd" value="<?= $phrase['endDate']; ?>" />
-        <input type="text" name="price" required placeholder="0.00" value="<?= $phrase['order_item_price']; ?>" />
+        <input type="text" name="price" required placeholder="0.00" value="<?= $phrase['price']; ?>" />
         <input type="submit" name="editbook" value="UPDATE" />
 
         </form>
