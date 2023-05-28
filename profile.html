@@ -1,103 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Profile page </title>
-    <link rel="stylesheet" href="style.css" media="screen"/>  
-    <script src="script.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
-  </head>
-	<header>
-		<nav>
-		  <ul>
-			<li><a href="index.html">Homepage</a></li>
-			<li><a href="aboutUs.html">About Us</a></li>
-		  </ul>
-		</nav>
-		<div class="logo">LOGOS</div>
-		<nav>
-		  <ul>
-			<li><a href="wishlist.html">Wishlist</a></li>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Profile page </title>
+  <link rel="stylesheet" href="style.css" media="screen" />
+  <script src="script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+</head>
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Homepage</a></li>
+      <li><a href="aboutUs.html">About Us</a></li>
+    </ul>
+  </nav>
+  <div class="logo">LOGOS</div>
+  <nav>
+    <ul>
+      <li><a href="wishlist.html">Wishlist</a></li>
       <li><a href="login.html">Login/ Register</a></li>
       <li><a href="basket.html">Basket</a></li>
-		  </ul>
-		</nav>
-	  </header>
+    </ul>
+  </nav>
+</header>
+
 <body>
   <main>
     <div class="profile">
-        <h1>Edit Your Profile</h1>
-    
-    <!-- Name Section -->
-        <h2>Update your details</h2>
-        <form action="update_name.php" method="post">
-            <label for="title">Title:</label>
-            <select id="title" name="title" required>
-              <option value="Mr">Mr</option>
-              <option value="Mrs">Mrs</option>
-              <option value="Miss">Miss</option>
-              <option value="Dr">Dr</option>
-              <option value="Prof">Prof</option>
-              <option value="Rev">Rev</option>
-              <option value="Ms">Ms</option>
-            </select>
-    
-          <label for="firstName">First Name:</label>
-          <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
-    
-          <label for="lastName">Last Name:</label>
-          <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
-    
-          <label for="mobileNumber">Mobile Number:</label>
-          <input type="text" id="mobileNumber" name="mobileNumber" placeholder="Enter your mobile number" required>
-    
-          <input type="submit" value="Update Name">
-        </form>
-    
-    <!-- Email Section -->
-        <h2>Email</h2>
-        <form action="update_email.php" method="post">
-          <label for="currentEmail">Current Email:</label>
-          <input type="email" id="currentEmail" name="currentEmail" placeholder="Enter your current email" required>
-    
-          <label for="newEmail">New Email:</label>
-          <input type="email" id="newEmail" name="newEmail" placeholder="Enter your new email" required>
-    
-          <label for="confirmNewEmail">Confirm New Email:</label>
-          <input type="email" id="confirmNewEmail" name="confirmNewEmail" placeholder="Confirm your new email" required>
-    
-          <input type="submit" value="Update Email">
-        </form>
-    
-    <!-- Password Section -->
-        <h2>Password</h2>
-        <form action="update_password.php" method="post">
-          <label for="currentPassword">Current Password:</label>
-          <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter your current password" required>
-    
-          <label for="newPassword">New Password:</label>
-          <input type="password" id="newPassword" name="newPassword" placeholder="Enter your new password" required>
-    
-          <label for="confirmNewPassword">Confirm New Password:</label>
-          <input type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm your new password" required>
-    
-          <input type="submit" value="Update Password">
-        </form>
-      </div>
+      <h1>Edit Your Profile</h1>
+
+      <!-- Name Section -->
+      <h2>Update your details</h2>
+      <form action="update_name.php" method="post">
+        <label for="title">Title:</label>
+        <select id="title" name="title" required>
+          <option value="Mr">Mr</option>
+          <option value="Mrs">Mrs</option>
+          <option value="Miss">Miss</option>
+          <option value="Dr">Dr</option>
+          <option value="Prof">Prof</option>
+          <option value="Rev">Rev</option>
+          <option value="Ms">Ms</option>
+        </select>
+
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+
+        <label for="mobileNumber">Mobile Number:</label>
+        <input type="text" id="mobileNumber" name="mobileNumber" placeholder="Enter your mobile number" required>
+
+        <input type="submit" value="Update Name">
+      </form>
+
+      <!-- Email Section -->
+      <h2>Email</h2>
+      <form action="update_email.php" method="post">
+        <label for="currentEmail">Current Email:</label>
+        <input type="email" id="currentEmail" name="currentEmail" placeholder="Enter your current email" required>
+
+        <label for="newEmail">New Email:</label>
+        <input type="email" id="newEmail" name="newEmail" placeholder="Enter your new email" required>
+
+        <label for="confirmNewEmail">Confirm New Email:</label>
+        <input type="email" id="confirmNewEmail" name="confirmNewEmail" placeholder="Confirm your new email" required>
+
+        <input type="submit" value="Update Email">
+      </form>
+
+      <!-- Password Section -->
+      <h2>Password</h2>
+      <form action="update_password.php" method="post">
+        <label for="currentPassword">Current Password:</label>
+        <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter your current password"
+          required>
+
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword" placeholder="Enter your new password" required>
+
+        <label for="confirmNewPassword">Confirm New Password:</label>
+        <input type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm your new password"
+          required>
+
+        <input type="submit" value="Update Password">
+      </form>
+    </div>
 
 
 
   </main>
-  <footer><p> product of Logos bookstore</p> 
+  <footer>
+    <p> product of Logos bookstore</p>
     <nav>
-    <h4>About</h4>
-    <ul style="list-style: none;" >
-      <li><a href="about us.html">About us</a></li>
-    </ul>
+      <h4>About</h4>
+      <ul style="list-style: none;">
+        <li><a href="about us.html">About us</a></li>
+      </ul>
     </nav>
   </footer>
 </body>
+
 </html>
